@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creator AI Pro</title>
+<style>
+body{
+font-family:Arial;
+background:#0f0f0f;
+color:white;
+text-align:center;
+padding:20px;
+}
+input{
+padding:12px;
+width:90%;
+max-width:400px;
+border-radius:8px;
+border:none;
+margin-top:20px;
+}
+button{
+padding:12px 20px;
+border-radius:8px;
+border:none;
+background:red;
+color:white;
+margin-top:15px;
+font-size:16px;
+cursor:pointer;
+}
+.card{
+background:#1f1f1f;
+padding:20px;
+border-radius:12px;
+margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<h1>🔥 Creator AI Pro</h1>
+
+<input type="text" id="topic" placeholder="Enter your video topic">
+
+<br>
+<button onclick="analyze()">Analyze Trend</button>
+
+<div id="result" class="card" style="display:none;"></div>
+
+<script>
+function analyze(){
+let topic=document.getElementById("topic").value;
+
+if(topic==""){
+alert("Enter topic first");
+return;
+}
+
+let result=document.getElementById("result");
+result.style.display="block";
+
+result.innerHTML=`
+<h3>Analysis for: ${topic}</h3>
+<p><b>Best Hook:</b> Tu bhi aisa karta hai na? 😭</p>
+<p><b>Best Title:</b> ${topic} but Haryanvi Version 😂</p>
+<p><b>Thumbnail Text:</b> YE KYA THA?!</p>
+<p><b>Best Upload Time:</b> 7:30 PM IST</p>
+<p><b>Trend Level:</b> Medium 🔥</p>
+`;
+}
+</script>
+
+</body>
+</html>
