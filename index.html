@@ -1,73 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Creator AI Pro</title>
-<style>
-body{
-font-family:Arial;
-background:#0f0f0f;
-color:white;
-text-align:center;
-padding:20px;
-}
-input{
-padding:12px;
-width:90%;
-max-width:400px;
-border-radius:8px;
-border:none;
-margin-top:20px;
-}
-button{
-padding:12px 20px;
-border-radius:8px;
-border:none;
-background:red;
-color:white;
-margin-top:15px;
-font-size:16px;
-cursor:pointer;
-}
-.card{
-background:#1f1f1f;
-padding:20px;
-border-radius:12px;
-margin-top:20px;
-}
-</style>
+  <title>Viral Video AI Studio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #38bdf8;
+    }
+
+    input {
+      width: 90%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: none;
+      background: #38bdf8;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 20px;
+      background: #1e293b;
+      padding: 15px;
+      border-radius: 10px;
+      white-space: pre-wrap;
+      text-align: left;
+    }
+  </style>
 </head>
 <body>
 
-<h1>🔥 Creator AI Pro</h1>
+<h1>🔥 Viral Video AI Studio</h1>
 
-<input type="text" id="topic" placeholder="Enter your video topic">
+<input type="text" id="topic" placeholder="Enter your video topic...">
 
-<br>
-<button onclick="analyze()">Analyze Trend</button>
+<button onclick="generate()">Generate Viral Plan</button>
 
-<div id="result" class="card" style="display:none;"></div>
+<div id="result"></div>
 
 <script>
-function analyze(){
-let topic=document.getElementById("topic").value;
+async function generate() {
+  const topic = document.getElementById("topic").value;
+  const resultDiv = document.getElementById("result");
 
-if(topic==""){
-alert("Enter topic first");
-return;
-}
+  resultDiv.innerHTML = "Generating... ⏳";
 
-let result=document.getElementById("result");
-result.style.display="block";
+  try {
+    const response = await fetch(`/api/ai?topic=${encodeURIComponent(topic)}`);
+    const data = await response.json();
 
-result.innerHTML=`
-<h3>Analysis for: ${topic}</h3>
-<p><b>Best Hook:</b> Tu bhi aisa karta hai na? 😭</p>
-<p><b>Best Title:</b> ${topic} but Haryanvi Version 😂</p>
-<p><b>Thumbnail Text:</b> YE KYA THA?!</p>
-<p><b>Best Upload Time:</b> 7:30 PM IST</p>
-<p><b>Trend Level:</b> Medium 🔥</p>
-`;
+    resultDiv.innerHTML = data.result;
+  } catch (error) {
+    resultDiv.innerHTML = "Error connecting to AI.";
+  }
 }
 </script>
 
