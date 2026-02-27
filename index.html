@@ -63,7 +63,7 @@ async function generate() {
   resultDiv.innerHTML = "Generating... ⏳";
 
   try {
-    const response = await fetch(`/api/ai?topic=${encodeURIComponent(topic)}`);
+    const response = await fetch(`/api/viral?topic=${encodeURIComponent(topic)}`);
     const data = await response.json();
 
     resultDiv.innerHTML = data.result;
